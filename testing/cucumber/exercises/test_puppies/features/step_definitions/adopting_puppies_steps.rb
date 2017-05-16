@@ -6,6 +6,8 @@ Given(/^I am on the puppy adoption site$/) do
   goto_adoption_site
 end
 
+# Adoption
+
 When(/^I click the first View Details button$/) do
   @browser.button(value: 'View Details', index: 0).click
 end
@@ -48,4 +50,20 @@ end
 
 Then(/^I should see "([^"]*)"$/) do |text|
   expect(@browser.text).to include(text)
+end
+
+# Cart Verification
+
+Then(/^I should see "([^"]*)" as the name for item (\d+)$/) do |name, line_item|
+  row = checkout_row_offset(line_item)
+  expect(@browser.table(index: 0)[row][1].text).to include name
+end
+
+Then(/^I should see "([^"]*)" as the subtotal for item (\d+)$/) do |subtotal, line_item|
+  row = checkout_row_offset(line_item)
+  expect(@browser.table(index: 0)[row][3].text).to eql subtotal
+end
+
+Then(/^I should see "([^"]*)" as the cart total$/) do |total|
+  expect(@browser.td(class: 'total_cell').text).to eql total
 end
