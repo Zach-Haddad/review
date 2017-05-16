@@ -1,10 +1,21 @@
 require 'Watir'
-@browser = Watir::Browser.new :chrome
-@browser.goto 'http://puppies.herokuapp.com'
+
+def goto_adoption_site
+  @browser = Watir::Browser.new :chrome
+  @browser.goto 'http://puppies.herokuapp.com'
+end
 
 def adopt_puppy(puppy_index)
   @browser.button(value: 'View Details', index: puppy_index).click
   @browser.button(value: 'Adopt Me!').click
+end
+
+def continue_adopting
+  @browser.button(value: 'Adopt Another Puppy').click
+end
+
+def finish_adopting
+  @browser.button(value: 'Complete the Adoption').click
 end
 
 def checkout(name, address, email, payment_method)
@@ -15,9 +26,9 @@ def checkout(name, address, email, payment_method)
   @browser.button(value: 'Place Order').click
 end
 
-
+goto_adoption_site
 adopt_puppy(0)
-@browser.button(value: 'Adopt Another Puppy').click
+continue_adopting
 adopt_puppy(1)
-@browser.button(value: 'Complete the Adoption').click
+finish_adopting
 checkout('Zach', '123 Fake st', 'sample@sample.com', 'Check')
