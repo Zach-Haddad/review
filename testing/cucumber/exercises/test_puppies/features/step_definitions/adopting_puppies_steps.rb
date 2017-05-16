@@ -1,4 +1,5 @@
 require_relative '../../../adoption_helper'
+require 'rspec'
 include AdoptionHelper
 
 Given(/^I am on the puppy adoption site$/) do
@@ -38,5 +39,5 @@ When(/^I click the Place Order button$/) do
 end
 
 Then(/^I should see "([^"]*)"$/) do |text|
-  @browser.text.include? text
+  expect(@browser.text).to include(text)
 end
