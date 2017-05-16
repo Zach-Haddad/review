@@ -64,6 +64,10 @@ def cart_line_item(line_item)
   @browser.table(index: 0)[row_for(line_item)]
 end
 
+def cart_total
+  @browser.td(class: 'total_cell').text
+end
+
 
 Then(/^I should see "([^"]*)" as the name for item (\d+)$/) do |name, line_item|
   expect(cart_line_item(line_item.to_i)[1].text).to include name
@@ -74,5 +78,5 @@ Then(/^I should see "([^"]*)" as the subtotal for item (\d+)$/) do |subtotal, li
 end
 
 Then(/^I should see "([^"]*)" as the cart total$/) do |total|
-  expect(@browser.td(class: 'total_cell').text).to eql total
+  expect(cart_total).to eql total
 end
