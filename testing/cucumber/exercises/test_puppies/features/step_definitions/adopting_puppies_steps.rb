@@ -54,14 +54,23 @@ end
 
 # Cart Verification
 
+def row_for(line_item)
+  row = line_item - 1
+  offset = row * 5
+  row > 0 ? row + offset : row
+end
+
+def cart_line_item(line_item)
+  @browser.table(index: 0)[row_for(line_item)]
+end
+
+
 Then(/^I should see "([^"]*)" as the name for item (\d+)$/) do |name, line_item|
-  row = checkout_row_offset(line_item)
-  expect(@browser.table(index: 0)[row][1].text).to include name
+  expect(cart_line_item(line_item.to_i)[1].text).to include name
 end
 
 Then(/^I should see "([^"]*)" as the subtotal for item (\d+)$/) do |subtotal, line_item|
-  row = checkout_row_offset(line_item)
-  expect(@browser.table(index: 0)[row][3].text).to eql subtotal
+  expect(cart_line_item(line_item.to_i)[3].text).to eql subtotal
 end
 
 Then(/^I should see "([^"]*)" as the cart total$/) do |total|

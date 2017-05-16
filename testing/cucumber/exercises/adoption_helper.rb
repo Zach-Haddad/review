@@ -32,11 +32,4 @@ module AdoptionHelper
   def close_browser
     @browser.close
   end
-
-  # get appropriate table row in cart given line item
-  def checkout_row_offset(line_item)
-    row = line_item.to_i - 1
-    offset = row * 5
-    row > 0 ? row + offset : row
-  end
 end
