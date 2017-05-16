@@ -26,9 +26,19 @@ def checkout(name, address, email, payment_method)
   @browser.button(value: 'Place Order').click
 end
 
+def verify_page_contains(text, error = "There was an error")
+  fail error unless @browser.text.include? text
+end
+
+def close_browser
+  @browser.close
+end
+
 goto_adoption_site
 adopt_puppy(0)
 continue_adopting
 adopt_puppy(1)
 finish_adopting
 checkout('Zach', '123 Fake st', 'sample@sample.com', 'Check')
+verify_page_contains('Thank you for adopting a puppy!')
+close_browser
