@@ -22,11 +22,11 @@ When(/^I click the Adopt Me button$/) do
 end
 
 When(/^I click the Adopt Another Puppy button$/) do
-  @browser.button(value: 'Adopt Another Puppy').click
+  @cart.continue_shopping
 end
 
 When(/^I click the Complete the Adoption button$/) do
-  @browser.button(value: 'Complete the Adoption').click
+  @cart.proceed_to_checkout
 end
 
 When(/^I enter "([^"]*)" in the name field$/) do |name|
