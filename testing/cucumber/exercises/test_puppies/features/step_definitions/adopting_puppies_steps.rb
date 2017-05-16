@@ -18,6 +18,7 @@ end
 
 When(/^I click the Adopt Me button$/) do
   @browser.button(value: 'Adopt Me!').click
+  @cart = ShoppingCartPage.new(@browser)
 end
 
 When(/^I click the Adopt Another Puppy button$/) do
@@ -54,29 +55,14 @@ end
 
 # Cart Verification
 
-def row_for(line_item)
-  row = line_item - 1
-  offset = row * 5
-  row > 0 ? row + offset : row
-end
-
-def cart_line_item(line_item)
-  @browser.table(index: 0)[row_for(line_item)]
-end
-
-def cart_total
-  @browser.td(class: 'total_cell').text
-end
-
-
 Then(/^I should see "([^"]*)" as the name for item (\d+)$/) do |name, line_item|
-  expect(cart_line_item(line_item.to_i)[1].text).to include name
+  expect(@cart.line_item_name(line_item.to_i)).to include name
 end
 
 Then(/^I should see "([^"]*)" as the subtotal for item (\d+)$/) do |subtotal, line_item|
-  expect(cart_line_item(line_item.to_i)[3].text).to eql subtotal
+  expect(@cart.line_item_subtotal(line_item.to_i)).to eql subtotal
 end
 
 Then(/^I should see "([^"]*)" as the cart total$/) do |total|
-  expect(cart_total).to eql total
+  expect(@cart.cart_total).to eql total
 end
