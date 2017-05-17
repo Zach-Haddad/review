@@ -1,7 +1,10 @@
+require_relative 'error_panel'
+
 class CheckoutPage
   # with PageObject gem
   include PageObject
   include DataMagic #default data stored in config/data/default.yml
+  include ErrorPanel
 
   text_field(:name, id: "order_name")
   textarea(:address, id: "order_address")

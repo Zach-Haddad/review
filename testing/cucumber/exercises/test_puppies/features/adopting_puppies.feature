@@ -79,6 +79,13 @@ Feature: Adopting Puppies
   #   And I complete the adoption
   #   Then I should see "Thank you for adopting a puppy!"
 
-  Scenario: Thank you message should be displayed
-    When I complete the adoption of a puppy
-    Then I should see "Thank you for adopting a puppy!"
+  # Scenario: Thank you message should be displayed
+  #   When I complete the adoption of a puppy
+  #   Then I should see "Thank you for adopting a puppy!"
+
+  ## Errors/Edits
+
+  Scenario: Name is a required field
+    When I checkout leaving the name field blank
+    Then I should see the error message "Name can't be blank"
+    #works with page.text too!

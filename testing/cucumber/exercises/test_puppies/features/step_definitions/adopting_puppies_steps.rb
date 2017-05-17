@@ -97,3 +97,14 @@ When /^I complete the adoption of a puppy$/ do
   on(ShoppingCartPage).proceed_to_checkout
   on(CheckoutPage).checkout
 end
+
+When /^I checkout leaving the name field blank/ do
+  on(HomePage).select_puppy
+  on(DetailsPage).add_to_cart
+  on(ShoppingCartPage).proceed_to_checkout
+  on(CheckoutPage).checkout('name' => '')
+end
+
+Then(/^I should see the error message "([^"]*)"$/) do |error|
+  expect(@current_page.error_messages).to include error
+end
