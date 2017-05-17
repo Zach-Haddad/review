@@ -65,6 +65,7 @@ PLATFORMS
 
 DEPENDENCIES
   cucumber
+  faker
   page-object (~> 2.0)
   rake
   rspec

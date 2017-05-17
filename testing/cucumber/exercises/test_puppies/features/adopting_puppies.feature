@@ -37,12 +37,12 @@ Feature: Adopting Puppies
   #   And I click the Place Order button
   #   Then I should see "Thank you for adopting a puppy!"
 
-  Scenario: Validate cart with one puppy
-    When I click the View Details button for "Brook"
-    And I click the Adopt Me button
-    Then I should see "Brook" as the name for item 1
-    And I should see "$34.95" as the subtotal for item 1
-    And I should see "$34.95" as the cart total
+  # Scenario: Validate cart with one puppy
+  #   When I click the View Details button for "Brook"
+  #   And I click the Adopt Me button
+  #   Then I should see "Brook" as the name for item 1
+  #   And I should see "$34.95" as the subtotal for item 1
+  #   And I should see "$34.95" as the cart total
 
   # Scenario: Validate cart with two puppies
   #   When I click the View Details button for "Brook"
@@ -55,3 +55,30 @@ Feature: Adopting Puppies
   #   And I should see "Hanna" as the name for item 2
   #   And I should see "$22.99" as the subtotal for item 2
   #   And I should see "$57.94" as the cart total
+
+  # Scenario: Adopting a puppy using a table
+  #   When I click the View Details button for "Brook"
+  #   And I click the Adopt Me button
+  #   And I click the Complete the Adoption button
+  #   And I complete the adoption with:
+  #   | name   | address         | email          | pay_type |
+  #   | Cheezy | 123 Main Street | cheezy@aol.com | Check    |
+  #   Then I should see "Thank you for adopting a puppy!"
+
+  # Scenario: Adopting a puppy using partial default data
+  #   When I click the View Details button for "Brook"
+  #   And I click the Adopt Me button
+  #   And I click the Complete the Adoption button
+  #   And I complete the adoption using a Credit card
+  #   Then I should see "Thank you for adopting a puppy!"
+
+  # Scenario: Adopting a puppy using all default data
+  #   When I click the View Details button for "Brook"
+  #   And I click the Adopt Me button
+  #   And I click the Complete the Adoption button
+  #   And I complete the adoption
+  #   Then I should see "Thank you for adopting a puppy!"
+
+  Scenario: Thank you message should be displayed
+    When I complete the adoption of a puppy
+    Then I should see "Thank you for adopting a puppy!"

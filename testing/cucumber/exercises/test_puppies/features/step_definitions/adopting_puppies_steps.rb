@@ -76,3 +76,24 @@ Then(/^I should see "([^"]*)" as the cart total$/) do |total|
   # expect(@cart.cart_total).to eql total
   expect(on(ShoppingCartPage).cart_total).to eql total
 end
+
+# Chapter 5 Refactor
+
+When(/^I complete the adoption with:$/) do |table|
+  on(CheckoutPage).checkout(table.hashes.first)
+end
+
+When /^I complete the adoption using a Credit card$/ do
+  on(CheckoutPage).checkout('pay_type' => 'Credit card')
+end
+
+When /^I complete the adoption$/ do
+  on(CheckoutPage).checkout
+end
+
+When /^I complete the adoption of a puppy$/ do
+  on(HomePage).select_puppy
+  on(DetailsPage).add_to_cart
+  on(ShoppingCartPage).proceed_to_checkout
+  on(CheckoutPage).checkout
+end
