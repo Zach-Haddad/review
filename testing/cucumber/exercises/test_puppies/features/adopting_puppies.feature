@@ -7,7 +7,7 @@ Feature: Adopting Puppies
     Given I am on the puppy adoption site
 
   # Scenario Outline: Adopting one puppy
-  #   When I click the first View Details button
+  #   When I click the View Details button for "Brook"
   #   And I click the Adopt Me button
   #   And I click the Complete the Adoption button
   #   And I enter "<name>" in the name field
@@ -24,10 +24,10 @@ Feature: Adopting Puppies
   #     | Jared   | 234 Leandog | doc@dev.com   | Check       |
   #
   # Scenario: Adopting two puppies
-  #   When I click the first View Details button
+  #   When I click the View Details button for "Brook"
   #   And I click the Adopt Me button
   #   And I click the Adopt Another Puppy button
-  #   And I click the second View Details button
+  #   When I click the View Details button for "Hanna"
   #   And I click the Adopt Me button
   #   And I click the Complete the Adoption button
   #   And I enter "Cheezy" in the name field
@@ -38,17 +38,17 @@ Feature: Adopting Puppies
   #   Then I should see "Thank you for adopting a puppy!"
 
   Scenario: Validate cart with one puppy
-    When I click the first View Details button
+    When I click the View Details button for "Brook"
     And I click the Adopt Me button
     Then I should see "Brook" as the name for item 1
     And I should see "$34.95" as the subtotal for item 1
     And I should see "$34.95" as the cart total
 
   # Scenario: Validate cart with two puppies
-  #   When I click the first View Details button
+  #   When I click the View Details button for "Brook"
   #   And I click the Adopt Me button
   #   And I click the Adopt Another Puppy button
-  #   And I click the second View Details button
+  #   And I click the View Details button for "Hanna"
   #   And I click the Adopt Me button
   #   Then I should see "Brook" as the name for item 1
   #   And I should see "$34.95" as the subtotal for item 1
