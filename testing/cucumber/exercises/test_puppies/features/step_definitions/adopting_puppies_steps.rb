@@ -105,6 +105,6 @@ When /^I checkout leaving the name field blank/ do
   on(CheckoutPage).checkout('name' => '')
 end
 
-Then(/^I should see the error message "([^"]*)"$/) do |error|
-  expect(@current_page.error_messages).to include error
+Then(/^I should see the error message "([^"]*)"$/) do |error_message|
+  expect(@current_page).to have_error_message error_message
 end
