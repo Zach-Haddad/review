@@ -92,19 +92,44 @@ When /^I complete the adoption$/ do
 end
 
 When /^I complete the adoption of a puppy$/ do
-  on(HomePage).select_puppy
-  on(DetailsPage).add_to_cart
-  on(ShoppingCartPage).proceed_to_checkout
-  on(CheckoutPage).checkout
+  navigate_all
+  # on(HomePage).select_puppy
+  # on(DetailsPage).add_to_cart
+  # on(ShoppingCartPage).proceed_to_checkout
+  # on(CheckoutPage).checkout
 end
 
 When /^I checkout leaving the name field blank/ do
-  on(HomePage).select_puppy
-  on(DetailsPage).add_to_cart
-  on(ShoppingCartPage).proceed_to_checkout
-  on(CheckoutPage).checkout('name' => '')
+  navigate_to(CheckoutPage).checkout('name' => '')
+  # on(HomePage).select_puppy
+  # on(DetailsPage).add_to_cart
+  # on(ShoppingCartPage).proceed_to_checkout
+  # on(CheckoutPage).checkout('name' => '')
 end
 
 Then(/^I should see the error message "([^"]*)"$/) do |error_message|
   expect(@current_page).to have_error_message error_message
+end
+
+Given(/^I have a pending adoption for "([^"]*)"$/) do |name|
+  navigate_to(CheckoutPage).checkout('name' => name)
+  # on(HomePage).select_puppy
+  # on(DetailsPage).add_to_cart
+  # on(ShoppingCartPage).proceed_to_checkout
+  # on(CheckoutPage).checkout('name' => name)
+end
+
+####NOTE: Performing action between steps of route navigation
+# When /^I navigate to some page but do something along the way/ do
+#   navigate_to(SomePageInTheMiddleOfTheRoute).do_something
+#   continue_navigation_to(FinalPageInTheRoute).complete_this_step
+# end
+# use specific route:
+# navigate_all(:using => :the_other_route)
+
+When(/^I process the adoption$/) do
+  visit(LoginPage)
+  on(LoginPage).login_as_admin
+  on(LandingPage).adoptions
+  on(ProcessPuppyPage).process_first_puppy
 end

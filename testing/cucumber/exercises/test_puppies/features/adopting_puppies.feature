@@ -85,7 +85,13 @@ Feature: Adopting Puppies
 
   ## Errors/Edits
 
-  Scenario: Name is a required field
-    When I checkout leaving the name field blank
-    Then I should see the error message "Name can't be blank"
-    #works with page.text too!
+  # Scenario: Name is a required field
+  #   When I checkout leaving the name field blank
+  #   Then I should see the error message "Name can't be blank"
+  #   #works with page.text too!
+
+  # #Admin features
+  Scenario: Verify message after puppy is processed
+    Given I have a pending adoption for "John Johnson"
+    When I process the adoption
+    Then I should see "Please thank John Johnson for the order!"
