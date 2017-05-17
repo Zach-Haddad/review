@@ -27,26 +27,27 @@ end
 
 When(/^I click the Complete the Adoption button$/) do
   @cart.proceed_to_checkout
+  @checkout = CheckoutPage.new(@browser)
 end
 
 When(/^I enter "([^"]*)" in the name field$/) do |name|
-  @browser.text_field(name: 'order[name]').set(name)
+  @checkout.name = name
 end
 
 When(/^I enter "([^"]*)" in the address field$/) do |address|
-  @browser.textarea(name: 'order[address]').set(address)
+  @checkout.address = address
 end
 
 When(/^I enter "([^"]*)" in the email field$/) do |email|
-  @browser.text_field(name: 'order[email]').set(email)
+  @checkout.email = email
 end
 
-When(/^I select "([^"]*)" from the pay with dropdown$/) do |payment_method|
-  @browser.select_list(name: 'order[pay_type]').select(payment_method)
+When(/^I select "([^"]*)" from the pay with dropdown$/) do |pay_type|
+  @checkout.pay_type = pay_type
 end
 
 When(/^I click the Place Order button$/) do
-  @browser.button(value: 'Place Order').click
+  @checkout.place_order
 end
 
 Then(/^I should see "([^"]*)"$/) do |text|
