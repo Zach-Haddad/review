@@ -3,6 +3,7 @@
 # return nil if no such pair exists
 
 class Array
+  # single pass hash-map
   def two_sum(sum)
     num_hash = Hash.new
     each_with_index do |el, i|
