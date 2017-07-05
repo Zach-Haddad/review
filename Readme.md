@@ -3,6 +3,7 @@
 ## Ruby
 
 ## SQL
+ * [SQLZoo](https://sqlzoo.net/) exercises
 
 ## Rails
 
@@ -13,3 +14,4 @@
 ## Redux
 
 ## Testing
+  * Cucumber & Cheese (Morgan)
