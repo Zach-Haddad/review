@@ -15,5 +15,6 @@ class PostPage
 
   def delete_my_post
     confirm(true) { :delete_post }
+    # not working with watir webdriver
   end
 end

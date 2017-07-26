@@ -20,7 +20,7 @@ Feature: Making Posts
       And I make a post with the title of "Hello" and a body of "world"
       # And I click Delete Post
       # Then I should see the notice "Post deleted"
-      # NOTE: Unable to get pageobject to confirm rails modal
+      ## NOTE: Unable to get pageobject to confirm rails modal
       # Then I should be redirected to the posts index
 
     # Scenario: Editing a post
