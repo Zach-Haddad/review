@@ -86,4 +86,58 @@ class Array
     self.my_each {|x| res.unshift(x)}
     res
   end
+
+  def bubblesort(&prc)
+    prc ||= Proc.new {|a, b| a > b}
+    res = self.dup
+
+    sorted = false
+    until sorted
+      sorted = true
+      each_index do |i|
+        next if i + 1 == self.length
+        j = i + 1
+
+        if prc.call(res[i], res[j])
+          res[i], res[j] = res[j], res[i]
+          sorted = false
+        end
+      end
+    end
+
+    res
+  end
+
+  def bubblesort!(&prc)
+    prc ||= Proc.new {|a, b| a > b}
+
+    sorted = false
+    until sorted
+      sorted = true
+      each_index do |i|
+        next if i + 1 == self.length
+        j = i + 1
+
+        if prc.call(self[i], self[j])
+          self[i], self[j] = self[j], self[i]
+          sorted = false
+        end
+      end
+    end
+
+    self
+  end
+end
+
+class Integer
+  def factors
+    res = []
+    (1..self/2).each do |i|
+      next unless self % i == 0
+      b = self / i
+      [i, b].each {|num| res << num unless res.include?(num)}
+    end
+
+    res.sort
+  end
 end
