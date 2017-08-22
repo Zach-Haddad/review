@@ -15,7 +15,7 @@ def make_change(target, coins = [25, 10, 5, 1])
 
     this_change = [coin] + best_remainder
 
-    if (best_change.nil? || (this_change.count < best_change.count))
+    if best_change.nil? || (this_change.count < best_change.count)
       best_change = this_change
     end
   end
